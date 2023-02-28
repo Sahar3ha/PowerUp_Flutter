@@ -4,24 +4,34 @@ import 'package:loader_overlay/loader_overlay.dart';
 import 'package:n_baz/screens/auth/forget_password_screen.dart';
 import 'package:n_baz/screens/auth/login_screen.dart';
 import 'package:n_baz/screens/auth/register_screen.dart';
+import 'package:n_baz/screens/category/single_category_screen.dart';
 import 'package:n_baz/screens/dashboard/dashboard.dart';
+import 'package:n_baz/screens/home_view.dart';
 import 'package:n_baz/screens/product/add_product_screen.dart';
+import 'package:n_baz/screens/product/edit_product_screen.dart';
+import 'package:n_baz/screens/product/my_product_screen.dart';
+import 'package:n_baz/screens/product/single_product_screen.dart';
 import 'package:n_baz/screens/splash_screen.dart';
+import 'package:n_baz/screens/welcom_view.dart';
 import 'package:n_baz/services/local_notification_service.dart';
 import 'package:n_baz/viewmodels/auth_viewmodel.dart';
 import 'package:n_baz/viewmodels/category_viewmodel.dart';
 import 'package:n_baz/viewmodels/global_ui_viewmodel.dart';
+import 'package:n_baz/viewmodels/product_viewmodel.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
-    // options: FirebaseOptions(
-    //   apiKey: "AIzaSyDZopgwT3FXAHhsTs2c78yk-dw92lnnEK8",
-    //   appId: "1:350617005648:web:64921c07aa521069b4ab55",
-    //   messagingSenderId: "350617005648",
-    //   projectId: "my-app-name-3d643",
-    // ),
+    options: FirebaseOptions(
+        apiKey: "AIzaSyCPac5nUBlerf3ayKcW-L__5322_wcS0jQ",
+        authDomain: "poweup-1122f.firebaseapp.com",
+        projectId: "poweup-1122f",
+        storageBucket: "poweup-1122f.appspot.com",
+        messagingSenderId: "275159509347",
+        appId: "1:275159509347:web:d0fbf69611f85b11278b56",
+        measurementId: "G-06Z57NCVLJ"
+    ),
   );
   NotificationService.initialize();
   runApp(MyApp());
@@ -38,6 +48,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider (create: (_) => GlobalUIViewModel()),
         ChangeNotifierProvider (create: (_) => AuthViewModel()),
         ChangeNotifierProvider (create: (_) => CategoryViewModel()),
+        ChangeNotifierProvider (create: (_) => ProductViewModel()),
       ],
       child: GlobalLoaderOverlay(
         useDefaultLoading: false,
@@ -71,8 +82,8 @@ class MyApp extends StatelessWidget {
                 "/splash": (BuildContext context)=>SplashScreen(),
                 "/register": (BuildContext context)=>RegisterScreen(),
                 "/forget-password": (BuildContext context)=>ForgetPasswordScreen(),
-                "/dashboard": (BuildContext context)=>DashboardScreen(),
-                "/add-product": (BuildContext context)=>AddProductScreen(),
+                "/dashboard": (BuildContext context)=>WelcomView(),
+                "/home-view": (BuildContext context)=>HomeView(),
               },
             );
           }
